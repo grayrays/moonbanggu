@@ -1,0 +1,56 @@
+<include src="../../include/header.html" title="회원가입" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <section class="account-wrap non-member">
+      <h2 class="account-title">비회원 주문조회</h2>
+      <div class="account-content">
+        <ul class="form-list">
+          <li>
+            <div class="input-box">
+              <label class="label" for="@inputId">주문자명</label>
+              <input type="text" id="@inputId" />
+            </div>
+          </li>
+          <li>
+            <div class="input-box">
+              <label class="label" for="@inputPw">주문번호 (숫자16자리)</label>
+              <input type="password" id="@inputPw" />
+            </div>
+          </li>
+        </ul>
+        <ul class="agree-list">
+          <li class="more">
+            <div class="check-box">
+              <input type="checkbox" id="@check02" />
+              <label for="@check02">(필수) 개인정보 수집 및 이용 동의</label>
+            </div>
+            <a href="#none" class="bt-more">더보기</a>
+            <div class="agree-box">
+              <div class="agree-inner">
+                <!-- START :: 개인정보 수집 공통 영역 -->
+                <include src="../../../mo/include/privacy_non_member.html"></include>
+                <!-- //END :: 개인정보 수집 공통 영역 -->
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <footer class="btn-group">
+        <a href="#none" class="bt-large disabled">조회하기</a>
+      </footer>
+      <div class="cautions-order">
+        <p class="text">주문번호와 비밀번호를 잊으셨나요?</p>
+        <ul class="menu">
+          <li><a href="#none" class="bt-text">이메일문의</a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <!-- //END :: container -->
+
+<include src="../../include/footer.html" root="../.."></include>

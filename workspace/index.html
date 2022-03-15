@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="author" content="">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<title>작업 경로</title>
+	<style>
+		* {margin:0; padding:0; box-sizing:border-box;}
+		li {list-style:none;}
+		html:lang(ko) * {font-family:'DM Sans', 'Noto Sans KR', sans-serif;}
+		html, body, .ui_table {min-height:100%; font-size:16px;}
+		body {background-color:#fff;}
+		a {text-decoration:none;}
+		.ui_wrapper {position:relative; width:100%; max-width:1280px; margin:0 auto; padding:50px 20px; background-color:#fff; display:flex; flex-direction:column;  overflow:hidden}
+		.ui_wrapper h1 {font-size:30px; font-weight:500;}
+
+		.ui_header {position:relative; top:0; left:0; width:100%; padding:15px 0; line-height:34px; transition:.4s all ease;}
+		.ui_header h1 {margin:20px 25px 20px 0;}
+		.ui_header.fixed {position:fixed; background-color:#fff;}
+		.ui_header .ui_inner {margin:0 auto; padding:0 20px; display:flex; align-items:center; flex-wrap:wrap;}
+
+		.ui_tab {margin:20px 0; display:flex;}
+		.ui_tab li {margin-right:10px;}
+		.ui_tab li a {min-width:100px; padding:0 20px; font-size:20px; color:#000; font-weight:500; border:1px solid #111; display:flex; justify-content:center; align-items:center;}
+		.ui_tab li.active a {color:#fff; background-color:#111;}
+
+		.table_scroll {width:100%; overflow-x:auto;}
+		.ui_table {width:100%; min-width:700px; border-collapse:collapse}
+		.ui_table thead th {text-align:center; background-color:#f2f2f2; border-bottom:2px solid #333}
+		.ui_table th,
+		.ui_table td {height:40px; padding:5px 15px; font-weight:400; text-align:left; border:1px solid #ccc}
+		.ui_table th {font-weight:500; background-color:#f9f9f9}
+		.ui_table td {font-size:14px;}
+		.ui_table td.category {text-transform:capitalize; }
+		.ui_table.other th {background-color:#fff}
+		.link {width:30%;}
+		.url_copy {color:#666; transition:.2s all ease;}
+		.url_copy:hover {color:#2AC1BC !important;}
+		.script .url_copy {color:#000; font-weight:bold;}
+
+		.list_number li {position:relative; margin-top:4px; padding-left:12px; font-size:13px; color:#666;}
+		.list_number li:first-child {margin-top:0;}
+		.list_number li:before {position:absolute; top:6px; left:0; width:2px; height:2px; border-radius:50%; background-color:#999; display:block; content:'';}
+
+		@media (max-width:750px) {
+			.ui_wrapper {padding:20px;}
+			.ui_header {padding:0;}
+			.ui_header h1 {min-width:100%; margin:0;}
+			.ui_header .ui_inner {padding:0;}
+			.ui_table th,
+			.ui_table td {padding:8px 10px;}
+			.ui_table th {padding:15px 10px;}
+
+			.link {width:100px;}
+			.url_copy {position:relative; width:65px; height:40px; margin:0 auto; border:1px solid #ddd; border-radius:3px; text-indent:-1000em; display:block; overflow:hidden;}
+			.url_copy:before {position:absolute; top:0; left:0; width:100%; height:40px; font-size:16px; color:#000; line-height:40px; text-align:center; text-indent:0; display:block; content:'링크';}
+			.url_copy:hover {background-color:#f9f9f9;}
+		}
+	</style>
+	<script src="./mo/statics/js/jquery-3.4.1.min.js"></script>
+	<script>
+		$(function(){
+			var $urlCopy = $('.url_copy');
+			$urlCopy.each(function(){
+				var _this = $(this);
+				var url = _this.text();
+				var target = $(this).parents('.ui_content').hasClass('web') ? 'blank' : '';
+				$(this).attr({
+					'href' : url,
+					'target' : target
+				});
+			});
+			genRowspan('.web .ui_table tbody th');
+			//genRowspan('.web .ui_table .category');
+			genRowspan('.mo .ui_table tbody th');
+			//genRowspan('.mo .ui_table .category');
+      setRowspan('.ui_table')
+			$('.ui_table').each(function () {
+				if (!$(this).parent('.table_scroll').length) $(this).wrap('<div class="table_scroll" />');
+			});
+
+			if ( $(this).width() <= 750 ) {
+				//mobile
+				$('.ui_tab li').eq(1).addClass('active');
+			} else {
+				//pc
+				$('.ui_tab li').eq(0).addClass('active');
+			}
+			tabShow('.ui_tab' ,'.ui_content');
+			$('.ui_tab li a').click(function(e){
+				tabShow('.ui_tab' ,'.ui_content');
+				e.preventDefault();
+			});
+		});
+
+		function genRowspan(className){
+			$(className).each(function() {
+				var rows = $(className + ':contains("' + $(this).text() + '")');
+				if (rows.length > 1 && $(this).text() !== '예시' && $(this).text() !== '') {
+					rows.eq(0).attr('rowspan', rows.length);
+					rows.not(':eq(0)').remove();
+				}
+			});
+		}
+    function setRowspan(name) {
+      var mergeItem = '';
+      var mergeCount = 0;
+      var mergeRowNum = 0;
+
+      $('tr', name).each(function(row){
+        if(row > 0 ){
+          var item = $('td:eq(0)', $(this)).html();
+          if (mergeItem != item) {
+            mergeCount = 1;
+            mergeItem = item;
+            mergeRowNum = row;
+          } else {
+            mergeCount = mergeCount + 1;
+            $("tr:eq("+mergeRowNum+") > td:eq(0)").attr("rowspan",mergeCount);
+            $('td:eq(0)',$(this)).remove();
+          }
+        }
+      })
+    }
+		function tabShow(tab,content,showNum){
+			var $tab = $(tab);
+			var tabList = $tab.find('li');
+			var active = $tab.find('li.active');
+			var $content = $(content);
+			var showNum = active.length ? active.index() : 0;
+			contentShow(showNum);
+
+			$tab.find('li a').click(function(){
+				var _this = $(this);
+				var index = _this.parent('li').index();
+				contentShow(index);
+			});
+
+			function contentShow(showNum){
+				tabList.not(':eq('+ showNum+ ')').removeClass('active');
+				tabList.eq(showNum).addClass('active');
+				$content.not(':eq('+ showNum+ ')').hide();
+				$content.eq(showNum).show();
+			}
+		}
+	</script>
+</head>
+
+<body>
+<div class="ui_wrapper">
+	<header class="ui_header">
+		<div class="ui_inner">
+			<h1>작업 경로</h1>
+			<ul class="ui_tab">
+				<li><a href="#none">웹</a></li>
+				<li><a href="#none">모바일</a></li>
+			</ul>
+		</div>
+	</header>
+	<div class="ui_content web">
+		<table class="ui_table">
+			<colgroup>
+				<col width="10%" />
+				<col width="10%" />
+				<col width="20%" />
+				<col class="link" />
+				<col />
+			</colgroup>
+			<thead>
+			<tr>
+				<th>1DEPTH</th>
+				<th>2DEPTH</th>
+				<th>3DEPTH</th>
+				<th>경로</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<th>공통</th>
+				<td class="category">가이드</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./guide/index_pc.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">알럿 팝업</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/popup.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">메인</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/main.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">메인</td>
+				<td class="ui_list">배너 1개일 경우</td>
+				<td><a href="#none" class="url_copy">./pc/html/main2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">메인</td>
+				<td class="ui_list">팝업</td>
+				<td><a href="#none" class="url_copy">./pc/html/main_popup.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">시스템</td>
+				<td class="ui_list">페이지 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/system1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">시스템</td>
+				<td class="ui_list">오류 발생</td>
+				<td><a href="#none" class="url_copy">./pc/html/system2.html</a></td>
+				<td></td>
+			</tr>
+			<!-- START :: gnb -->
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">카테고리</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/list.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">테마</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/theme.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">전체 테마</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/theme_all.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">drawer : 로그인 전</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/list_drawer.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">drawer : 로그인 후</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/layout.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>header 스크롤 시 fixed</li>
+						<li>header 메뉴 클릭 : drawer 로그인 후 확인</li>
+						<li>header 장바구니 숫자</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">상품정보</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/detail.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>바로구매하기 : 옵션 셀렉트 박스 없을 경우</li>
+						<li>이건 어때요 : 목록 없을 경우</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">기본정보</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/detail_2.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>바로구매하기 : 셀렉트 박스 옵션 추가 전</li>
+						<li>이건 어때요 : 목록 4개 이하일 경우</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">상품후기</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/detail_3.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>바로구매하기 : 셀렉트 박스 옵션 추가 후</li>
+						<li>이건 어때요 : 목록 4개 이상일 경우</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">상품후기 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/detail_4.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>바로구매하기 : 솔드아웃</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">토스트 팝업</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/detail_5.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/product/layout_detail.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>header + 탭 스크롤 시 fixed</li>
+						<li>갤러리 swiper</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/product/search.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>최근 본 상품 swiper</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">최근 검색어, 목록이 적을 경우</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/search_list.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">최근 검색어, 목록이 없을 경우</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/search_list_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">결과</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/search_result.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">결과 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/product/search_result_none.html</a></td>
+				<td></td>
+			</tr>
+			<!-- 회원 -->
+			<tr>
+				<th>회원</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/join_step1.html</a></td>
+				<td>20220307 개인정보처리방침 수정</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">이용약관 펼침</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/join_step1_case.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/join_step2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">활성화</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/join_step2_case.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>가입하기 버튼 활성화</li>
+						<li>에러 문구 출력</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">가입완료</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/join_system1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">회원정보 등록 완료</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/join_system2.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>회원</th>
+				<td class="category"></td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/account/layout_join_step1.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>이용약관 버튼 액션</li>
+						<li>인풋 박스 스크립트</li>
+						<li>유효성 텍스트가 있을 경우<br />
+							Case1. 1자 이하일 경우 에러 문구<br />
+							Case2. 2자 이상일 경우 complete
+						</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">로그인</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/account/signin.html</a></td>
+				<td>20220215 수정</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">로그인</td>
+				<td class="ui_list">비회원</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/signin_non_member.html</a></td>
+				<td>20220215 추가<br />20220307 개인정보처리방침 수정</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">아이디 찾기</td>
+				<td class="ui_list">이메일</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_id_email.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">아이디 찾기</td>
+				<td class="ui_list">핸드폰</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_id_phone.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">아이디 찾기</td>
+				<td class="ui_list">성공</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_id_success.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 1. 아이디 입력</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_pw_step1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 2. 인증수단 선택</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_pw_step2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 3. 인증번호 입력(이메일)</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_pw_step3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 3. 인증번호 입력(SMS)</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_pw_step3_sms.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">비밀번호 재설정 : 입력 전</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_pw_reset.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">비밀번호 재설정 : 입력 후</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/find_pw_reset2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 변경</td>
+				<td class="ui_list">입력 전</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/password_reset.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 변경</td>
+				<td class="ui_list">입력 후</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/password_reset2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">휴면 해제</td>
+				<td class="ui_list">인증수단 선택</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/inactive.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">휴면 해제</td>
+				<td class="ui_list">인증번호 입력</td>
+				<td><a href="#none" class="url_copy">./pc/html/account/inactive2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">사이트 이전 안내</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/account/password_reset_member.html</a></td>
+				<td></td>
+			</tr>
+			<!-- 장바구니 -->
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./pc/html/order/cart_1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">무료배송 툴팁</td>
+				<td><a href="#none" class="url_copy">./pc/html/order/cart_2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">옵션변경</td>
+				<td><a href="#none" class="url_copy">./pc/html/order/cart_3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">장바구니 목록 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/order/cart_data_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">주문</td>
+				<td class="ui_list">완료</td>
+				<td><a href="#none" class="url_copy">./pc/html/order/order_success.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">주문</td>
+				<td class="ui_list">실패</td>
+				<td><a href="#none" class="url_copy">./pc/html/order/order_fail.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">메인</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/my_main.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">메인</td>
+				<td class="ui_list">최근 본 상품 목록 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/my_main_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td rowspan="3">회원정보 변경</td>
+				<td class="ui_list">회원정보 변경</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/member_modify.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="ui_list">비밀번호 변경</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/password_modify.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="ui_list">회원 탈퇴</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/member_secession.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 조회</td>
+				<td class="ui_list">목록</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 조회</td>
+				<td class="ui_list">목록: 주문내역 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_none.html</a></td>
+				<td></td>
+			</tr>
+
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">이전 사이트 회원 주문 조회</td>
+				<td class="ui_list">이전 주문내역보기 버튼 추가</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking2.html</a></td>
+				<td>20220215 추가</td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">이전 사이트 회원 주문 조회</td>
+				<td class="ui_list">주문/배송 조회</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/before_tracking.html</a></td>
+				<td>20220215 추가</td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">이전 사이트 회원 주문 조회</td>
+				<td class="ui_list">주문/배송 조회: 주문내역 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/before_tracking_none.html</a></td>
+				<td>20220215 추가</td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">이전 사이트 회원 주문 조회</td>
+				<td class="ui_list">주문/배송 조회: 상세내역</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/before_detail.html</a></td>
+				<td>20220215 추가</td>
+			</tr>
+
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 조회</td>
+				<td class="ui_list">배송조회</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_delivery.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 조회</td>
+				<td class="ui_list">배송조회: 배송상태 기간만료</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_delivery2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 조회</td>
+				<td class="ui_list">배송조회: 배달완료 문구없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_delivery3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 상세</td>
+				<td class="ui_list">배송중/배송완료</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_detail.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 상세</td>
+				<td class="ui_list">결제완료/배송지연</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_detail2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 상세</td>
+				<td class="ui_list">배송준비중</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_detail3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 상세</td>
+				<td class="ui_list">주문취소</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_detail4.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">주문/배송 상세</td>
+				<td class="ui_list">반품/교환 신청이력 있을 경우</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/tracking_detail5.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>마이페이지</th>
+				<td class="category">주문/배송 상세</td>
+				<td class="ui_list">반품/교환 신청이력 있을 경우</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/layout_tracking_detail.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>GNB/LNB 플로팅</li>
+						<li>상세 정보 토글 이벤트</li>
+					</ol>
+        </td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">반품</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">교환</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">취소</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">목록없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">교환 상세</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return_detail.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">반품 상세</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return_detail2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">반품교환 상품선택</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return_select.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">반품교환 신청서 작성</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return_write.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">취소/반품/교환</td>
+				<td class="ui_list">반품 교환 완료</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/return_end.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">상품 후기</td>
+				<td class="ui_list">목록</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/review.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">상품 후기</td>
+				<td class="ui_list">목록 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/review_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">상품 후기</td>
+				<td class="ui_list">작성</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/review_write.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">상품 후기</td>
+				<td class="ui_list">수정</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/review_modify.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">결제영수증</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/receipt.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">쿠폰</td>
+				<td class="ui_list">목록</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/coupon.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">쿠폰</td>
+				<td class="ui_list">목록 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/coupon_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">쿠폰</td>
+				<td class="ui_list">등록</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/coupon_write.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">배송지 관리</td>
+				<td class="ui_list">목록</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/address.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">배송지 관리</td>
+				<td class="ui_list">목록 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/address_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">배송지 관리</td>
+				<td class="ui_list">추가</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/address_write.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">배송지 관리</td>
+				<td class="ui_list">수정</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/address_modify.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">1:1문의</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/inquiry.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">1:1문의</td>
+				<td class="ui_list">내역 없음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/inquiry_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">1:1문의</td>
+				<td class="ui_list">작성</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/inquiry_write.html</a></td>
+				<td>
+					<ol class="list_number" style="margin-bottom:5px;">
+						<li>이용약관 동의 더보기 버튼 클릭 시 스크롤 이동</li>
+					</ol>
+          20220307 개인정보처리방침 수정
+        </td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">1:1문의</td>
+				<td class="ui_list">주문번호 선택</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/inquiry_select_number.html</a></td>
+				<td>20220307 주문번호 수정</td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">1:1문의</td>
+				<td class="ui_list">주문번호 선택: 목록 많음</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/inquiry_select_number2.html</a></td>
+				<td>20220307 주문번호 수정</td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">1:1문의</td>
+				<td class="ui_list">1:1 문의 접수 완료</td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/inquiry_end.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">이미지 뷰어</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/mypage/photo_view.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">공지사항</td>
+				<td class="ui_list">목록</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/notice.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">공지사항</td>
+				<td class="ui_list">상세</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/notice_view.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">현행</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/agree.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">20201112</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/agree_201112.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">20160721</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/agree_160721.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">현행</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy.html</a></td>
+				<td>20220225 추가</td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20201217</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy_201217.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20191120</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy_191120.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20190820</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy_190820.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20181128</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy_181128.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20180327</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy_180327.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20170913</td>
+				<td><a href="#none" class="url_copy">./pc/html/information/privacy_170913.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">about배민문방구</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./pc/html/information/about.html</a></td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="ui_content mo" style="display:none;">
+		<table class="ui_table">
+			<colgroup>
+				<col width="10%" />
+				<col width="10%" />
+				<col width="20%" />
+				<col class="link" />
+				<col />
+			</colgroup>
+			<thead>
+			<tr>
+				<th>1DEPTH</th>
+				<th>2DEPTH</th>
+				<th>3DEPTH</th>
+				<th>경로</th>
+				<th>비고</th>
+			</tr>
+			</thead>
+			<tbody>
+			<!-- 공통 -->
+			<tr>
+				<th>공통</th>
+				<td class="category">가이드</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./guide/index_mo.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">알럿 팝업</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/popup.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">메인</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/main.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">메인</td>
+				<td class="ui_list">배너 1개일 경우</td>
+				<td><a href="#none" class="url_copy">./mo/html/main2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">메인</td>
+				<td class="ui_list">팝업</td>
+				<td><a href="#none" class="url_copy">./mo/html/main_popup.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">시스템</td>
+				<td class="ui_list">페이지 없음</td>
+				<td><a href="#none" class="url_copy">./mo/html/system1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>공통</th>
+				<td class="category">시스템</td>
+				<td class="ui_list">오류 발생</td>
+				<td><a href="#none" class="url_copy">./mo/html/system2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">카테고리</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/list.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">테마</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/theme.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">전체 테마</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/theme_all.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">drawer : 로그인 전</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/list_drawer.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>전시</th>
+				<td class="category">목록</td>
+				<td class="ui_list">drawer : 로그인 후</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/layout.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>header 스크롤 시 fixed</li>
+						<li>header 메뉴 클릭 : drawer 로그인 후 확인</li>
+						<li>header 장바구니 숫자</li>
+						<li>footer 로고 클릭 : 사이트 정보 펼침 화면</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">상품정보</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/detail.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>이건 어때요 : 목록 없을 경우</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">기본정보</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/detail_2.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>이건 어때요 : 목록 1개일 경우 센터 정렬</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">상품후기</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/detail_3.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>이건 어때요 : 목록 2개 이상</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">상품후기 없음</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/detail_4.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>택배 출고 지연 문구</li>
+						<li>바로 구매하기 : 솔드아웃</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list">토스트 팝업</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/detail_5.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>전시</th>
+				<td class="category">상세</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/product/layout_detail.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/product/search.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">최근 목록 없음</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/search_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">결과</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/search_result.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">결과 없음</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/search_result_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>전시</th>
+				<td class="category">검색</td>
+				<td class="ui_list">스크롤 시 모션</td>
+				<td><a href="#none" class="url_copy">./mo/html/product/layout.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>검색 버튼 클릭 후, 검색 컨텐츠 스크롤 시 검색 라인 확장</li>
+					</ol>
+				</td>
+			</tr>
+			<!-- 회원 -->
+			<tr>
+				<th>회원</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/join_step1.html</a></td>
+				<td>20220307 개인정보처리방침 수정</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">이용약관 펼침</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/join_step1_case.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/join_step2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">활성화</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/join_step2_case.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>가입하기 버튼 활성화</li>
+						<li>에러 문구 출력</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">가입완료</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/join_system1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">회원</td>
+				<td class="ui_list">회원정보 등록 완료</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/join_system2.html</a></td>
+				<td></td>
+			</tr>
+			<tr class="script">
+				<th>회원</th>
+				<td class="category"></td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/account/layout_join_step1.html</a></td>
+				<td>
+					<ol class="list_number">
+						<li>이용약관 버튼 액션</li>
+						<li>인풋 박스 스크립트</li>
+						<li>유효성 텍스트가 있을 경우<br />
+							Case1. 1자 이하일 경우 에러 문구<br />
+							Case2. 2자 이상일 경우 complete
+						</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">로그인</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/account/signin.html</a></td>
+				<td>20220215 수정</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">로그인</td>
+				<td class="ui_list">비회원</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/signin_non_member.html</a></td>
+				<td>20220215 추가<br />20220307 개인정보처리방침 수정</td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">아이디 찾기</td>
+				<td class="ui_list">이메일</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_id_email.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">아이디 찾기</td>
+				<td class="ui_list">핸드폰</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_id_phone.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">아이디 찾기</td>
+				<td class="ui_list">성공</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_id_success.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 1. 아이디 입력</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_pw_step1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 2. 인증수단 선택</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_pw_step2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 3. 인증번호 입력(이메일)</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_pw_step3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">STEP 3. 인증번호 입력(SMS)</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_pw_step3_sms.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">비밀번호 재설정 : 입력 전</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_pw_reset.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 찾기</td>
+				<td class="ui_list">비밀번호 재설정 : 입력 후</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/find_pw_reset2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 변경</td>
+				<td class="ui_list">입력 전</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/password_reset.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">비밀번호 변경</td>
+				<td class="ui_list">입력 후</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/password_reset2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">휴면 해제</td>
+				<td class="ui_list">인증수단 선택</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/inactive.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">휴면 해제</td>
+				<td class="ui_list">인증번호 입력</td>
+				<td><a href="#none" class="url_copy">./mo/html/account/inactive2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>회원</th>
+				<td class="category">사이트 이전 안내</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/account/password_reset_member.html</a></td>
+				<td></td>
+			</tr>
+			<!-- 장바구니 -->
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">기본</td>
+				<td><a href="#none" class="url_copy">./mo/html/order/cart_1.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">무료배송 툴팁</td>
+				<td><a href="#none" class="url_copy">./mo/html/order/cart_2.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">옵션변경</td>
+				<td><a href="#none" class="url_copy">./mo/html/order/cart_3.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">장바구니</td>
+				<td class="ui_list">장바구니 목록 없음</td>
+				<td><a href="#none" class="url_copy">./mo/html/order/cart_data_none.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">주문</td>
+				<td class="ui_list">완료</td>
+				<td><a href="#none" class="url_copy">./mo/html/order/order_success.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>주문</th>
+				<td class="category">주문</td>
+				<td class="ui_list">실패</td>
+				<td><a href="#none" class="url_copy">./mo/html/order/order_fail.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">메뉴</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/mypage/navi.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">회원정보 변경</td>
+				<td class="ui_list">회원정보 변경</td>
+				<td><a href="#none" class="url_copy">./mo/html/mypage/member_modify.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">회원정보 변경</td>
+				<td class="ui_list">비밀번호 변경</td>
+				<td><a href="#none" class="url_copy">./mo/html/mypage/password_modify.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>마이페이지</th>
+				<td class="category">회원정보 변경</td>
+				<td class="ui_list">회원 탈퇴</td>
+				<td><a href="#none" class="url_copy">./mo/html/mypage/member_secession.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">공지사항</td>
+				<td class="ui_list">목록</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/notice.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">공지사항</td>
+				<td class="ui_list">상세</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/notice_view.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">현행</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/agree.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">20201112</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/agree_201112.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">이용약관</td>
+				<td class="ui_list">20160721</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/agree_160721.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">현행</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy.html</a></td>
+				<td>20220225 추가</td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20201217</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy_201217.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20191120</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy_191120.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20190820</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy_190820.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20181128</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy_181128.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20180327</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy_180327.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">개인정보처리방침</td>
+				<td class="ui_list">20170913</td>
+				<td><a href="#none" class="url_copy">./mo/html/information/privacy_170913.html</a></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>안내</th>
+				<td class="category">about배민문방구</td>
+				<td class="ui_list"></td>
+				<td><a href="#none" class="url_copy">./mo/html/information/about.html</a></td>
+				<td></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+</body>
+</html>

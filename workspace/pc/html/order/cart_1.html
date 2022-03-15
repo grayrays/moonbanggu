@@ -1,0 +1,238 @@
+<include src="../../include/header.html" title="장바구니" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <!-- PC에서 노출 -->
+    <div class="order-step">
+      <ul>
+        <li class="active">장바구니</li>
+        <li>주문/결제</li>
+        <li>결제완료</li>
+      </ul>
+    </div>
+
+    <div class="cart-wrapper">
+      <div class="cart-content">
+        <div class="cart-header">
+          <div class="check-box grey">
+            <input type="checkbox" id="@checkAll" checked />
+            <label for="@checkAll">전체선택(2/3)</label>
+          </div>
+          <a href="#none" class="bt-text">선택삭제</a>
+        </div>
+        <ul class="cart-list cols">
+          <li>
+            <div class="check-box">
+              <input type="checkbox" id="@check1" checked />
+              <label for="@check1"><span class="blind">선택</span></label>
+            </div>
+            <div class="list-box">
+              <p class="thumbs">
+                <a href="#none"><img src="../../statics/images/test/cart_img1.jpg" alt="종이로 만든 박스테이프" /></a>
+              </p>
+              <div class="info">
+                <p class="name"><a href="#none">종이로 만든 박스테이프</a></p>
+                <p class="option">옵션 : 스카이블루</p>
+                <p class="btn"><a href="#none" class="bt-xsmall outlined">옵션변경</a></p>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="quantity">
+                <input type="number" value="1" />
+                <button class="bt-minus">빼기</button>
+                <button class="bt-plus">더하기</button>
+              </div>
+              <div class="price">3,500원</div>
+            </div>
+            <a href="#none" class="bt-delete">삭제</a>
+          </li>
+          <li>
+            <div class="check-box">
+              <input type="checkbox" id="@check2" checked />
+              <label for="@check2"><span class="blind">선택</span></label>
+            </div>
+            <div class="list-box">
+              <p class="thumbs">
+                <a href="#none"><img src="../../statics/images/test/cart_img2.jpg" alt="요모포켓X배달이 친구들 독고배달이 포켓" /></a>
+              </p>
+              <div class="info">
+                <p class="name"><a href="#none">요모포켓X배달이 친구들 독고배달이 포켓</a></p>
+                <p class="option">옵션 : 다크블루</p>
+                <p class="btn"><a href="#none" class="bt-xsmall outlined">옵션변경</a></p>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="quantity">
+                <input type="number" value="999" />
+                <button class="bt-minus">빼기</button>
+                <button class="bt-plus">더하기</button>
+              </div>
+              <div class="price">122,000원</div>
+            </div>
+            <a href="#none" class="bt-delete">삭제</a>
+          </li>
+          <li>
+            <div class="check-box">
+              <input type="checkbox" id="@check3" checked />
+              <label for="@check3"><span class="blind">선택</span></label>
+            </div>
+            <div class="list-box">
+              <p class="thumbs">
+                <a href="#none"><img src="../../statics/images/test/cart_img3.jpg" alt="피규어. 냥이배달이" /></a>
+              </p>
+              <div class="info">
+                <p class="name"><a href="#none">피규어. 냥이배달이</a></p>
+                <p class="option">옵션 : 30cm</p>
+                <p class="btn"><a href="#none" class="bt-xsmall outlined">옵션변경</a></p>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="quantity">
+                <input type="number" value="1" />
+                <button class="bt-minus">빼기</button>
+                <button class="bt-plus">더하기</button>
+              </div>
+              <div class="price">7,000원</div>
+            </div>
+            <a href="#none" class="bt-delete">삭제</a>
+          </li>
+          <!-- soldout일 경우
+            li에 soldout 클래스
+            input이나 button, 버튼형 a링크에 disabled 속성 추가
+          -->
+          <li class="soldout">
+            <div class="check-box">
+              <input type="checkbox" id="@check4" disabled />
+              <label for="@check4"><span class="blind">선택</span></label>
+            </div>
+            <div class="list-box">
+              <p class="thumbs">
+                <a href="#none"><img src="../../statics/images/test/cart_img4.jpg" alt="매거진F No.06 Chocolate" /></a>
+              </p>
+              <div class="info">
+                <p class="name"><a href="#none">매거진F No.06 Chocolate</a></p>
+                <p class="option">옵션 : 영문판(ENG) (+2700원)</p>
+                <p class="btn"><a href="#none" class="bt-xsmall disabled">옵션변경</a></p>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="quantity disabled">
+                <input type="number" value="1" disabled="disabled" />
+                <button class="bt-minus" disabled="disabled">빼기</button>
+                <button class="bt-plus" disabled="disabled">더하기</button>
+              </div>
+              <div class="price">soldout</div>
+            </div>
+            <a href="#none" class="bt-delete">삭제</a>
+          </li>
+          <!-- //soldout일 경우-->
+          <li>
+            <div class="check-box">
+              <input type="checkbox" id="@check2" checked />
+              <label for="@check2"><span class="blind">선택</span></label>
+            </div>
+            <div class="list-box">
+              <p class="thumbs">
+                <a href="#none"><img src="../../statics/images/test/cart_img2.jpg" alt="요모포켓X배달이 친구들 독고배달이 포켓" /></a>
+              </p>
+              <div class="info">
+                <p class="name"><a href="#none">요모포켓X배달이 친구들 독고배달이 포켓</a></p>
+                <p class="option">옵션 : 다크블루 다크블루 다크블루 다크블루 다크블루 다크블루</p>
+                <p class="btn"><a href="#none" class="bt-xsmall outlined">옵션변경</a></p>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="quantity">
+                <input type="number" value="1" />
+                <button class="bt-minus">빼기</button>
+                <button class="bt-plus">더하기</button>
+              </div>
+              <div class="price">12,000원</div>
+            </div>
+            <a href="#none" class="bt-delete">삭제</a>
+          </li>
+          <li>
+            <div class="check-box">
+              <input type="checkbox" id="@check2" checked />
+              <label for="@check2"><span class="blind">선택</span></label>
+            </div>
+            <div class="list-box">
+              <p class="thumbs">
+                <a href="#none"><img src="../../statics/images/test/cart_img2.jpg" alt="요모포켓X배달이 친구들 독고배달이 포켓" /></a>
+              </p>
+              <div class="info">
+                <p class="name"><a href="#none">요모포켓X배달이 친구들 독고배달이 포켓</a></p>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="quantity">
+                <input type="number" value="1" />
+                <button class="bt-minus">빼기</button>
+                <button class="bt-plus">더하기</button>
+              </div>
+              <div class="price">12,000원</div>
+            </div>
+            <a href="#none" class="bt-delete">삭제</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- PC :: 우측에서 fixed, sticky 되어 따라 다님 -->
+      <div class="payment-area">
+        <div class="payment-result">
+          <dl class="amount">
+            <dt>총 상품금액</dt>
+            <dd>22,500원</dd>
+            <dt>배송비</dt>
+            <dd>+0원</dd>
+          </dl>
+          <dl  class="total">
+            <dt>결제예상금액</dt>
+            <dd>10,500원</dd>
+          </dl>
+          <!--
+          <div class="tooltip">
+            <p class="tip-content"><strong>13,100원</strong> 더 주문 시, <strong>무료배송</strong></p>
+          </div>
+          -->
+        </div>
+        <div class="btn-group">
+          <a href="#none" class="bt-base"><strong>22,500원</strong> 주문하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //END :: container -->
+
+  <!-- 옵션 선택 레이어 -->
+  <div class="layer-select" style="display: none;">
+    <h2>옵션 선택</h2>
+    <div class="select-box multiple">
+      <div class="select-text"><button>옵션을 선택해 주세요.</button></div>
+      <div class="select-options">
+        <div class="options">
+          <ul>
+            <li><button>50cm</button></li>
+            <li class="selected"><a href="#none">40cm</a></li>
+            <li><a href="#none">30cm</a></li>
+            <li><a href="#none">20cm</a></li>
+            <li><a href="#none">10cm</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="#none" class="bt-base outlined">취소</a>
+      <a href="#none" class="bt-base">적용하기</a>
+      <!-- MO 버튼
+      <a href="#none" class="bt-base">적용하기</a>
+      -->
+    </div>
+    <a href="#none" class="bt-close">닫기</a>
+  </div>
+
+<include src="../../include/footer_script.html" root="../.."></include>

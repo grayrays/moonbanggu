@@ -1,0 +1,46 @@
+<include src="../../include/header_title.html" title="아이디/비밀번호 찾기" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <div class="account-wrap">
+      <h2 class="account-title">아이디/비밀번호 찾기</h2>
+      <div class="account-content">
+        <div class="tabs">
+          <ul>
+            <li><a href="#none">아이디 찾기</a></li>
+            <li class="active"><a href="#none">비밀번호 찾기</a></li>
+          </ul>
+        </div>
+        <div class="find-content">
+          <h3 class="title">비밀번호 재설정</h3>
+          <ul class="form-list large">
+            <li>
+              <div class="input-box active complete">
+                <span class="inform">10~16자, 영문대소문자/숫자/특수문자 2종 이상</span>
+                <label class="label" for="@inputPw">새 비밀번호</label>
+                <input type="password" id="@inputPw" value="1234567" />
+              </div>
+              <p class="text-valid show">사용 가능한 비밀번호입니다</p>
+            </li>
+            <li>
+              <div class="input-box active error">
+                <label class="label" for="@inputPw2">새 비밀번호 확인</label>
+                <input type="password" id="@inputPw2" value="1234567" />
+              </div>
+              <p class="text-valid show">비밀번호가 일치하지 않습니다. 다시 확인해주세요.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer class="btn-group">
+        <a href="#none" class="bt-base">비밀번호 재설정</a>
+      </footer>
+    </div>
+  </div>
+  <!-- //END :: container -->
+  <!-- 모바일 footer 삭제됨 -->
+<include src="../../include/footer_none.html" root="../.."></include>

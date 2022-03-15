@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>가이드 화면</title>
+	<link rel="stylesheet" type="text/css" href="../mo/statics/css/layout-mo.css">
+	<link rel="stylesheet" type="text/css" href="guide.css">
+</head>
+
+<body>
+<div class="guide-wrapper">
+	<header class="guide-header">
+		<h1 class="logo"><span>배민문방구</span>가이드 문서</h1>
+	</header>
+	<div class="guide-wrap">
+		<nav class="guide-nav">
+			<div class="guide-inner">
+				<h2 class="blind">가이드 목록</h2>
+			</div>
+		</nav>
+		<div class="guide-contents">
+			<div class="guide-change">
+				<h3>변경점</h3>
+				<div class="change-list">
+          <h4 class="guide-date">2022-02-07</h4>
+					<ol>
+						<li>옵션 선택 전 라벨 타입 추가, option disabled 추가 <a href="#link-220207" class="a-link">바로가기</a>
+					</ol>
+					<h4 class="guide-date">2021-11-16</h4>
+					<ol>
+						<li>디자인 셀렉트박스 옵션 스크롤 관련 클래스 추가 <a href="#link-211116" class="a-link">바로가기</a>
+					</ol>
+					<h4 class="guide-date">2021-11-09</h4>
+					<ol>
+						<li>상단 GNB 형태 추가 <a href="#link-211010-1" class="a-link">바로가기</a>
+							<p>- 이전 버튼만 있는 타입</p>
+							<p>- 로고만 있는 타입</p>
+						</li>
+						<li>버튼 클래스 추가 및 삭제 <a href="#link-211010-2" class="a-link">바로가기</a>
+							<p>- bt-small 사이즈 추가</p>
+							<p>- reverse 삭제하고, outlined로 클래스 수정</p>
+							<p>- point 클래스 삭제</p>
+							<p>- 알럿 팝업에 사용하는 버튼 그룹 클래스(alert-button) 추가</p>
+						</li>
+						<li>input 관련 가이드 추가</li>
+						<li>checkbox 관련 가이드 추가</li>
+					</ol>
+				</div>
+			</div>
+			<article class="guide-content">
+				<h2><span>폴더 구조 및 파일명</span></h2>
+				<table class="guide-table">
+					<colgroup>
+						<col width="200" />
+						<col width="300" />
+						<col />
+					</colgroup>
+					<thead>
+						<tr>
+							<th></th>
+							<th>위치</th>
+							<th>설명</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>html</th>
+							<td>/html/{폴더명}/layout.html<br />
+								/html/{폴더명}/layout_*.html
+							</td>
+							<td>
+								layout으로 시작되는 파일은 가이드, 예시 화면입니다.<br />
+								하단 footer에 퍼블리싱 관련 스크립트가 포함되어 있으니, 참고해주세요.
+							</td>
+						</tr>
+						<tr>
+							<th>css</th>
+							<td>/statics/css</td>
+							<td></td>
+						</tr>
+						<tr>
+							<th>js</th>
+							<td>/statics/js</td>
+							<td>
+									퍼블리싱 관련 스크립트 폴더입니다.<br />
+									작업 시 삭제하셔도 무관합니다.
+							</td>
+						</tr>
+						<tr>
+							<th>image</th>
+							<td>/statics/images/test</td>
+							<td>
+								어드민에서 등록될 썸네일 이미지 폴더입니다.<br />
+								작업 시 삭제하셔도 무관합니다.
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</article>
+
+			<article class="guide-content">
+				<h2><span>상단 GNB 메뉴</span></h2>
+	<h3>1. 로고 + 글로벌 메뉴 + 카테고리</h3>
+	<div style="position:relative; max-width:375px;">
+		<header class="moonbanggu-header">
+			<div class="nav-global">
+				<h1 class="logo"><a href="#none">배민문방구</a></h1>
+				<!--
+				<a href="#none" class="bt-prev">이전</a>
+				<h2 class="page-title">타이틀</h2>
+				-->
+				<div class="gnb">
+					<h2>공통 메뉴</h2>
+					<ul>
+						<li><a href="#none" class="bt-search">검색</a></li>
+						<li><a href="#none" class="bt-cart">장바구니
+								<!-- 장바구니 수량 추가 시 -->
+								<span class="count-box">2</span>
+							</a>
+						</li>
+						<!-- PC에서 추가되는 메뉴
+						<li><a href="#none" class="bt-mypage">마이페이지</a></li>
+						<li><a href="#none" class="bt-signin">로그인</a></li>
+						<li><a href="#none" class="bt-signin">로그아웃</a></li>
+						-->
+						<li><a href="#none" class="bt-menu">메뉴</a></li>
+					</ul>
+				</div>
+			</div>
+			<nav class="nav-category">
+				<h2>카테고리 메뉴</h2>
+				<ul>
+					<li><a href="#none">전체</a></li>
+					<li><a href="#none">문구</a></li>
+					<li><a href="#none">리빙</a></li>
+					<li class="active"><a href="#none">책/매거진F</a></li> <!-- 활성화 클래스 : active -->
+					<li><a href="#none">배민그린</a></li>
+					<li><a href="#none">배달이친구들</a></li>
+					<li><a href="#none">콜라보레이션</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	<h3>2. 이전 + 글로벌 메뉴</h3>
+	<div style="position:relative; max-width:375px;">
+		<header class="moonbanggu-header">
+			<div class="nav-global">
+				<a href="#none" class="bt-prev">이전</a>
+				<div class="gnb">
+					<h2>공통 메뉴</h2>
+					<ul>
+						<li><a href="#none" class="bt-search">검색</a></li>
+						<li><a href="#none" class="bt-cart">장바구니</a>
+						</li>
+						<li><a href="#none" class="bt-menu">메뉴</a></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+	<h3>3. 이전 + 타이틀</h3>
+	<div style="position:relative; max-width:375px;">
+		<header class="moonbanggu-header">
+			<div class="nav-global">
+				<a href="#none" class="bt-prev">이전</a>
+				<h2 class="page-title">타이틀</h2>
+			</div>
+		</header>
+	</div>
+	<h3 id="link-211010-1">4. 이전</h3>
+	<div style="position:relative; max-width:375px;">
+		<header class="moonbanggu-header">
+			<div class="nav-global">
+				<a href="#none" class="bt-prev">이전</a>
+			</div>
+		</header>
+	</div>
+	<h3>5. 로고</h3>
+	<div style="position:relative; max-width:375px;">
+		<header class="moonbanggu-header">
+			<div class="nav-global">
+				<h1 class="logo"><a href="#none">배민문방구</a></h1>
+			</div>
+		</header>
+	</div>
+				<ul class="guide-list">
+					<li>마크업은 모두 동일하며, 순서대로 필요한 영역을 삭제/추가하시면 됩니다.</li>
+				</ul>
+				<section class="exp">
+					<pre>
+						<code class="html">
+&lt;header class="moonbanggu-header">
+		&lt;div class="nav-global">
+				&lt;h1 class="logo">&lt;a href="#none">배민문방구&lt;/a>&lt;/h1> //로고
+				&lt;!--
+				&lt;a href="#none" class="bt-prev">이전&lt;/a>
+				&lt;h2 class="page-title">타이틀&lt;/h2>
+				-->
+				&lt;div class="gnb"> //글로벌 메뉴
+						&lt;h2>공통 메뉴&lt;/h2>
+						&lt;ul>
+							...
+							...
+						&lt;/ul>
+				&lt;/div>
+		&lt;/div>
+		&lt;nav class="nav-category">
+				&lt;h2>카테고리 메뉴&lt;/h2>
+				&lt;ul>
+					&lt;li class="active">&lt;a href="#none">전체&lt;/a>&lt;/li> &lt;!-- 활성화 클래스 : active -->
+					...
+					...
+				&lt;/ul>
+		&lt;/nav>
+&lt;/header>
+						</code>
+					</pre>
+				</section>
+			</article>
+
+			<article class="guide-content">
+				<h2><span>전시 목록</span></h2>
+				<h3>일반 목록</h3>
+				<div class="b-list">
+					<div class="list-box">
+						<a href="#none">
+							<p class="thumbs">
+								<img src="../mo/statics/images/test/list_book_01.jpg" alt="업사이클링 스탠드그립 세트. 맥주" />
+							</p>
+							<div class="info">
+								<span class="badge">
+									<i class="icon-new">NEW</i>
+									<i class="icon-green">GREEN</i>
+									<!--
+									<i class="icon-new">NEW</i>
+									<i class="icon-green">GREEN</i>
+									<i class="icon-sale"><b>20%</b> SALE</i>
+									<i class="icon-best">BEST</i>
+									-->
+								</span>
+								<p class="name">업사이클링 스탠드그립 세트. 맥주</p>
+								<p class="price"><del>12,000원</del> 18,900원</p>
+								<p class="inform">전국 세븐일레븐에서 만나요!</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<h3>목록 뱃지</h3>
+				<div class="list-box">
+					<span class="badge" style="justify-content:flex-start;">
+						<i class="icon-new">NEW</i>
+						<i class="icon-green">GREEN</i>
+						<i class="icon-sale"><b>15%</b> SALE</i>
+						<i class="icon-sale"><b>20%</b> SALE</i>
+						<i class="icon-best">BEST</i>
+					</span>
+				</div>
+				<ul class="guide-list">
+					<li>b-list와 list-box의 경우 케이스에 따라 클래스가 추가될 예정입니다.</li>
+					<li>링크가 필요없을 경우 list-box 내부 a태그 삭제 가능</li>
+				</ul>
+				<section class="exp">
+					<pre>
+						<code class="html">
+기본 목록 :: 2단 목록
+&lt;div class="b-list">
+	&lt;div class="list-box">
+		&lt;a href="#none">
+			&lt;p class="thumbs">&lt;img src="../mo/statics/images/test/list_book_01.jpg" alt="업사이클링 스탠드그립 세트. 맥주" />&lt;/p>
+			&lt;!-- 1단 목록일 경우 삭제되는 영역 -->
+			&lt;div class="info">
+				&lt;span class="badge">
+					&lt;i class="icon-new">NEW&lt;/i>
+					&lt;i class="icon-green">GREEN&lt;/i>
+					&lt;i class="icon-new">NEW&lt;/i>
+					&lt;i class="icon-green">GREEN&lt;/i>
+					&lt;i class="icon-sale">&lt;b>20%&lt;/b> SALE&lt;/i>
+					&lt;i class="icon-best">BEST&lt;/i>
+				&lt;/span>
+				&lt;p class="name">업사이클링 스탠드그립 세트. 맥주&lt;/p>
+				&lt;p class="price">&lt;del>12,000원&lt;/del> 18,900원&lt;/p>
+				&lt;p class="inform">전국 세븐일레븐에서 만나요!&lt;/p>
+			&lt;/div>
+			&lt;!-- //1단 목록일 경우 삭제되는 영역 -->
+		&lt;/a>
+	&lt;/div>
+&lt;/div>
+
+전체 테마 :: 1단 목록일 경우
+기본목록에서 type-banner 클래스 추가 + info 삭제
+&lt;div class="b-list type-banner">
+	&lt;div class="list-box">
+		&lt;a href="#none">
+			&lt;p class="thumbs">&lt;img src="../mo/statics/images/test/list_book_01.jpg" alt="업사이클링 스탠드그립 세트. 맥주" />&lt;/p>
+		&lt;/a>
+	&lt;/div>
+&lt;/div>
+
+아래는 작업 방향이니 참고만 해주세요. 차후 진행하며 정리할게요.
+마이페이지의 좌측 썸네일 + 우측 제품 정보가 나오는 단일 목록일 경우 list-box에 rows 클래스 추가
+다중 목록일 경우 list-box 상위 레이어 추가될 예정
+&lt;div class="list-box rows">
+	&lt;a href="#none">
+		&lt;p class="thumbs">&lt;img src="../mo/statics/images/test/list_book_01.jpg" alt="업사이클링 스탠드그립 세트. 맥주" />&lt;/p>
+		&lt;div class="info">
+			...
+		&lt;/div>
+	&lt;/a>
+&lt;/div>
+						</code>
+					</pre>
+				</section>
+			</article>
+
+			<div id="link-211116"></div>
+			<article class="guide-content new">
+				<h2><span>디자인 셀렉트박스</span></h2>
+				<h3>기본</h3>
+        <div class="select-box" style="width:180px;">
+          <div class="select-text"><button>추천순</button></div>
+          <div class="select-options">
+            <div class="options">
+              <ul>
+                <li class="selected"><button>추천순</button></li>
+                <li><a href="#none">최신순</a></li>
+                <li><a href="#none">높은가격순</a></li>
+                <li><a href="#none">낮은가격순</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+				<h3>Option 스크롤</h3>
+        <div class="select-box" style="width:180px;">
+          <div class="select-text"><button>추천순</button></div>
+          <div class="select-options">
+            <div class="options overflow">
+              <ul>
+                <li class="selected"><button>추천순</button></li>
+                <li><a href="#none">최신순</a></li>
+                <li><a href="#none">높은가격순</a></li>
+                <li><a href="#none">낮은가격순</a></li>
+                <li><a href="#none">옵션명이 길어질 경우 어떻게 보일지 테스트</a></li>
+                <li class="disabled"><a href="#none">비활성화 : a 태그</a></li>
+                <li class="disabled"><button>비활성화 : button 태그</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="link-220207"></div>
+				<h3>옵션 선택 전 라벨 타입 추가, option disabled 추가</h3>
+        <div class="select-box" style="width:180px;">
+          <div class="select-text"><button class="label">선택해주세요</button></div>
+          <div class="select-options">
+            <div class="options overflow">
+              <ul>
+                <li><button>추천순</button></li>
+                <li><a href="#none">최신순</a></li>
+                <li class="disabled"><a href="#none">비활성화 : a 태그</a></li>
+                <li class="disabled"><button>비활성화 : button 태그</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+				<section class="exp">
+					<pre>
+						<code class="html">
+select-box에 show 클래스 추가시 옵션 펼침
+클릭 영역은 a태그 혹은 button 중 선택해서 사용해주세요.
+&lt;div class="select-box">
+  &lt;div class="select-text">&lt;button>선택된 택스트&lt;/button>&lt;/div>
+  &lt;div class="select-options">
+    &lt;div class="options">
+      &lt;ul>
+        //button 혹은 a태그 중 선택해서 사용 가능
+        &lt;li class="selected">&lt;button>버튼형&lt;/button>&lt;/li>
+        &lt;li>&lt;a href="#none">a태그&lt;/a>&lt;/li>
+        &lt;li class="disabled">&lt;a href="#none">비활성화&lt;/a>&lt;/li>
+      &lt;/ul>
+    &lt;/div>
+  &lt;/div>
+&lt;/div>
+
+options 내부 스크롤 발생 시 options에 overflow 클래스 추가
+options 내부 스크롤 시 options에 scroll 클래스 추가(스크롤 시 shadow 생김)
+&lt;div class="select-box">
+  &lt;div class="select-text">&lt;button>선택된 택스트&lt;/button>&lt;/div>
+  &lt;div class="select-options">
+    &lt;div class="options overflow scroll">
+			...
+    &lt;/div>
+  &lt;/div>
+&lt;/div>
+						</code>
+					</pre>
+				</section>
+			</article>
+
+			<article class="guide-content">
+				<h2 id="link-211010-2"><span>버튼</span></h2>
+				<div style="display:flex;">
+					<div style="width:335px;">
+						<h3 class="guide-sub-title">버튼 기본 : a태그</h3>
+						<div class="btn-group cols mt-0">
+							<a href="#none" class="bt-base">bt-base</a>
+							<a href="#none" class="bt-base outlined">outlined</a>
+							<a href="#none" class="bt-base disabled">disabled</a>
+							<a href="#none" class="bt-base text">text</a>
+							<a href="#none" class="bt-base text grey">text grey</a>
+						</div>
+					</div>
+					<div style="width:335px; margin-left:10px;">
+						<h3 class="guide-sub-title">버튼 기본 : button 태그</h3>
+						<div class="btn-group cols mt-0">
+							<button class="bt-base">bt-base</button>
+							<button href="#none" class="bt-base outlined">outlined</button>
+							<button href="#none" class="bt-base" disabled>disabled</button>
+							<button href="#none" class="bt-base text">text</button>
+							<button href="#none" class="bt-base text grey">text grey</button>
+						</div>
+					</div>
+				</div>
+				<div style="width:335px; margin-top:30px;">
+					<h3 class="guide-sub-title">버튼 large</h3>
+					<div class="btn-group cols mt-0">
+						<a href="#none" class="bt-large">기본</a>
+						<a href="#none" class="bt-large outlined">outlined</a>
+						<a href="#none" class="bt-large disabled">disabled</a>
+					</div>
+				</div>
+				<div style="width:335px; margin-top:30px;">
+					<h3 class="guide-sub-title">버튼 small</h3>
+					<div class="btn-group mt-0">
+						<a href="#none" class="bt-small">기본</a>
+						<a href="#none" class="bt-small outlined">outlined</a>
+						<a href="#none" class="bt-small disabled">disabled</a>
+					</div>
+				</div>
+				<section class="exp">
+					<pre>
+						<code class="html">
+bt-xsmall, bt-xlarge 등 디자인에서 버튼이 추가되는 방식에 따라 버튼 타입 추가될 수 있습니다.
+그 외 아이콘이 들어간 버튼 형태는 고유 클래스 추가하여 작업할 예정입니다.
+
+버튼 기본 :: 높이 52px, 폰트사이즈 16px
+&lt;a href="#none" class="bt-base">기본&lt;/a>
+&lt;a href="#none" class="bt-base outlined">기본&lt;/a>
+&lt;a href="#none" class="bt-base disabled">disabled&lt;/a>
+&lt;a href="#none" class="bt-base text grey">text grey&lt;/a>
+&lt;a href="#none" class="bt-base text">text&lt;/a>
+
+button 태그일 경우
+버튼 기본과 클래스 동일하나 disabled만 클래스가 아닌 속성으로 사용해주세요.(클래스도 스타일이 잡혀 있어 사용 가능하나, 권장하지 않음)
+&lt;button class="bt-base">기본&lt;/button>
+...
+&lt;button class="bt-base" disabled">disabled&lt;/button>
+
+버튼 large :: 높이 62px, 폰트사이즈 18px, 폰트 두께 700
+&lt;a href="#none" class="bt-large">기본&lt;/a>
+&lt;a href="#none" class="bt-large outlined">outlined&lt;/a>
+&lt;a href="#none" class="bt-large disabled">disabled&lt;/a>
+
+버튼 small :: 높이 52px, 폰트사이즈 13px
+bt-small의 경우 너비가 full이 아닌 자동 사이즈에, 최소 width 값을 가집니다.
+&lt;a href="#none" class="bt-small">기본&lt;/a>
+&lt;a href="#none" class="bt-small outlined">outlined&lt;/a>
+&lt;a href="#none" class="bt-small disabled">disabled&lt;/a>
+						</code>
+					</pre>
+				</section>
+
+				<h3>버튼 정렬 : 기본</h3>
+				<div style="width:680px;">
+					<div class="btn-group" style="margin-top:0;">
+						<a href="#none" class="bt-base outlined">a태그</a>
+						<button class="bt-base">button</button>
+					</div>
+					<div class="alert-button" style="margin-top:10px; border-top:0;">
+						<a href="#none" class="bt-base grey">알럿 팝업 버튼 1</a>
+						<button class="bt-base">알럿 팝업 버튼 2</button>
+					</div>
+				</div>
+				<h3>버튼 정렬 : cols</h3>
+				<div style="width:335px;">
+					<div class="btn-group cols mt-0">
+						<a href="#none" class="bt-base outlined">a태그</a>
+						<button class="bt-base">button</button>
+					</div>
+				</div>
+				<section class="exp">
+					<pre>
+						<code class="html">
+기본 정렬은 rows
+&lt;div class="btn-group">
+	&lt;a href="#none" class="bt-base outlined">a태그&lt;/a>
+	&lt;button class="bt-base">button&lt;/button>
+&lt;/div>
+
+cols 클래스 추가 시 너비 100%에 1단 정렬
+&lt;div class="btn-group cols">
+	&lt;a href="#none" class="bt-base outlined">a태그 1&lt;/a>
+	&lt;button class="bt-base">button&lt;/button>
+&lt;/div>
+
+mt-0 클래스 추가시 btn-group이 갖고 있는 기본 마진값 0으로 리셋
+&lt;div class="btn-group mt-0">
+	&lt;a href="#none" class="bt-base outlined">a태그&lt;/a>
+	&lt;button class="bt-base">button&lt;/button>
+&lt;/div>
+
+알럿 버튼의 경우 텍스트 버튼(text, text + grey) 클래스 조합과 동일하나,
+1. 텍스트 버튼의 사용이 알럿 팝업 외에 사용이 확인 되지 않아 차후 삭제될 수도 있으며,
+2. 자주 사용하는 형태라 더 편한 형태로 예외 처리했습니다.
+&lt;div class="alert-button">
+	&lt;a href="#none" class="bt-base grey">알럿 팝업 버튼 1&lt;/a>
+	&lt;button class="bt-base">알럿 팝업 버튼 2&lt;/button>
+&lt;/div>
+						</code>
+					</pre>
+				</section>
+			</article>
+
+			<article class="guide-content new">
+				<h2><span>input box</span></h2>
+				<h3>기본</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script">
+						<span class="inform">설명문구</span>
+						<label for="input1" class="label">Label</label>
+						<input type="text" id="input1" />
+					</div>
+				</div>
+				<h3>필수</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script must">
+						<span class="inform">설명문구</span>
+						<label for="input2" class="label">Label</label>
+						<input type="text" id="input2" />
+					</div>
+				</div>
+				<h3>Focus : Case1. 설명문구 + label이 있을 경우</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script focus">
+						<span class="inform">설명문구</span>
+						<label for="input3" class="label">아이디</label>
+						<input type="text" id="input3" />
+					</div>
+					<div class="input-box no-script focus must">
+						<span class="inform">설명문구</span>
+						<label for="input3-2" class="label">아이디</label>
+						<input type="text" id="input3-2" />
+					</div>
+				</div>
+				<h3>Focus : Case2. label만 있을 경우</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script focus">
+						<label for="input4" class="label">Label</label>
+						<input type="text" id="input4" />
+					</div>
+					<div class="input-box no-script focus must">
+						<label for="input4-2" class="label">Label</label>
+						<input type="text" id="input4-2" />
+					</div>
+				</div>
+				<h3>Active</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script active">
+						<label for="input5" class="label">Label</label>
+						<input type="text" id="input5" value="value 값이 있을 경우" />
+					</div>
+					<div class="input-box no-script active must">
+						<label for="input5-2" class="label">Label</label>
+						<input type="text" id="input5-2" value="value 값이 있을 경우" />
+					</div>
+				</div>
+				<h3>Error</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script error active">
+						<label for="input6" class="label">Label</label>
+						<input type="text" id="input6" value="value 값이 있을 경우" />
+					</div>
+					<div class="input-box no-script error active must">
+						<label for="input6-2" class="label">Label</label>
+						<input type="text" id="input6-2" value="value 값이 있을 경우" />
+					</div>
+					<p class="text-valid show">에러 문구가 출력됩니다.</p>
+				</div>
+				<h3>Complete</h3>
+				<div class="guide-input-area">
+					<div class="input-box no-script complete active">
+						<label for="input7" class="label">Label</label>
+						<input type="text" id="input7" value="value 값이 있을 경우" />
+					</div>
+					<div class="input-box no-script complete active must">
+						<label for="input7-2" class="label">Label</label>
+						<input type="text" id="input7-2" value="value 값이 있을 경우" />
+					</div>
+					<p class="text-valid show">Complete</p>
+				</div>
+				<h3>Disabled</h3>
+				<div class="guide-input-area">
+					<div class="input-box disabled">
+						<span class="inform">설명문구</span>
+						<label for="input-10" class="label">Label</label>
+						<input type="text" id="input10-1" />
+					</div>
+					<div class="input-box disabled must">
+						<span class="inform">설명문구</span>
+						<label for="input-10" class="label">Label</label>
+						<input type="text" id="input10-2" />
+					</div>
+				</div>
+
+				<h3>스크립트 참고</h3>
+				<ul class="form-list large" style="width:360px; margin-top:0;">
+					<li>
+						<h4>설명문구 + label이 있을 경우</h4>
+						<ul class="guide-list">
+							<li>기본 : 센터에 label 출력</li>
+							<li>포커스 : 상단에 설명 문구 출력</li>
+							<li>입력 후 input 외 다른 곳 클릭 : 상단에 label 출력</li>
+							<li>입력 후 포커스 : 상단에 설명문구 출력</li>
+						</ul>
+						<div class="input-box">
+							<span class="inform">설명문구</span>
+							<label for="input-8" class="label">Label</label>
+							<input type="text" id="input-8" />
+						</div>
+						<p class="text-valid" data-complete="Complete">에러 문구가 출력됩니다.</p>
+					</li>
+					<li>
+						<h4>label만 있을 경우</h4>
+						<ul class="guide-list">
+							<li>기본 : 센터에 label 출력</li>
+							<li>포커스 : 상단에 label 출력</li>
+						</ul>
+						<div class="input-box">
+							<label for="input-9" class="label">Label</label>
+							<input type="text" id="input-9" />
+						</div>
+						<p class="text-valid" data-complete="사용 가능한 아이디입니다">에러 문구가 길경우 어떻게 출력되는지 확인하기 위해 테스트 테스트 테스트 해봅니다.</p>
+					</li>
+				</ul>
+				<section class="exp">
+					<pre>
+						<code class="html">
+input id는 @input으로 시작됩니다.
+input-box와 함께 사용되는 클래스 must | focus | active | error | complete
+inform과 label, input이 나오는 순서를 지켜 주셔야 css에서 체크 가능합니다.
+
+높이 62px input
+기본
+&lt;div class="input-box">
+	&lt;span class="inform">설명문구&lt;/span>
+	&lt;label for="input1" class="label">Label&lt;/label>
+	&lt;input type="text" id="@아이디명" />
+&lt;/div>
+
+기본 : 설명문구가 없을 경우
+&lt;div class="input-box">
+	&lt;label for="input1" class="label">Label&lt;/label>
+	&lt;input type="text" id="@아이디명" />
+&lt;/div>
+
+필수항목일 경우
+&lt;div class="input-box must">
+...
+&lt;/div>
+
+포커스
+&lt;div class="input-box focus">
+...
+&lt;/div>
+
+필수항목 + 포커스
+&lt;div class="input-box must focus">
+...
+&lt;/div>
+
+input-box 외 영역을 클릭 시
+&lt;div class="input-box active">
+...
+&lt;/div>
+
+유효성 체크 관련 클래스 error와 complete는 focus 혹은 active와 함께 사용해주세요.
+Error
+&lt;div class="input-box active error">
+...
+&lt;/div>
+
+Complete
+&lt;div class="input-box active complete">
+...
+&lt;/div>
+
+
+유효성 텍스트 text-valid
+- 기본 display: none, 클래스 show 추가 시 block
+- input-box 바로 다음에 올 경우, input-box에 클래스 error, complete 여부에 따라 text-valid의 아이콘과 컬러가 결정됩니다.
+&lt;div class="input-box active error">
+...
+&lt;/div>
+&lt;p class="text-valid show">에러 문구가 출력됩니다.&lt;/p>
+
+- input-box 바로 다음이 아닌 위치일 경우 text-valid에 error, complete 클래스를 직접 추가해주세요.
+&lt;div class="input-box active error">
+...
+&lt;/div>
+...
+&lt;p class="text-valid show error">에러 문구가 출력됩니다.&lt;/p>
+						</code>
+					</pre>
+				</section>
+
+				<h3>small</h3>
+				<div class="guide-input-area">
+					<div class="input-box small">
+						<input type="text" placeholder="기본" />
+					</div>
+					<div class="input-box small must">
+						<input type="text" placeholder="필수" />
+					</div>
+					<div class="input-box small error">
+						<input type="text" placeholder="placeholder" value="error" />
+					</div>
+					<p class="text-valid show">에러 문구가 출력됩니다.</p>
+					<div class="input-box small complete">
+						<input type="text" placeholder="placeholder" value="complete" />
+					</div>
+					<p class="text-valid show">에러 문구가 출력됩니다.</p>
+					<div class="input-box small must complete">
+						<input type="text" placeholder="complete" />
+					</div>
+					<div class="input-box small">
+						<input type="text" placeholder="placeholder" value="disabled" disabled />
+					</div>
+				</div>
+
+				<section class="exp">
+					<pre>
+						<code class="html">
+높이 52px input
+기본
+&lt;div class="input-box small">
+	&lt;input type="text" placeholder="기본" id="@아이디명" />
+&lt;/div>
+
+필수항목일 경우
+&lt;div class="input-box must">
+...
+&lt;/div>
+
+Error
+&lt;div class="input-box small error">
+...
+&lt;/div>
+
+Complete
+&lt;div class="input-box small complete">
+...
+&lt;/div>
+
+유효성 텍스트 text-valid는 기본 input-box와 동일합니다.
+						</code>
+					</pre>
+				</section>
+
+        <div id="link-220225" style="margin-bottom: 80px;"></div>
+        <h3>textarea : 기본</h3>
+        <div class="guide-input-area">
+          <div class="text-box">
+            <textarea></textarea>
+          </div>
+					<p class="text-valid show">유효성 문구</p>
+        </div>
+        <h3>textarea : 에러</h3>
+        <div class="guide-input-area">
+          <div class="text-box error">
+            <textarea></textarea>
+          </div>
+					<p class="text-valid show">유효성 문구</p>
+        </div>
+        <section class="exp">
+          <pre>
+            <code class="html">
+  기본
+  &lt;div class="text-box">
+    &lt;textarea>&lt;/textarea>
+  &lt;/div>
+
+  focus
+  &lt;div class="text-box focus">
+  ...
+  &lt;/div>
+
+  Error
+  &lt;div class="text-box error">
+  ...
+  &lt;/div>
+            </code>
+          </pre>
+        </section>
+			</article>
+
+			<article class="guide-content">
+				<h2><span>check box</span></h2>
+				<h3>체크박스 : 폰트 16px</h3>
+				<div class="check-group">
+					<div class="check-box">
+						<input type="checkbox" id="@check1-1" />
+						<label for="@check1-1">기본</label>
+					</div>
+					<div class="check-box" style="width: 250px;">
+						<input type="checkbox" id="@check1-2" checked />
+						<label for="@check1-2">텍스트가 길어서 혹시나 2줄이 될 경우에는 이렇게 보여요.</label>
+					</div>
+				</div>
+				<h3>small : 폰트 14px</h3>
+				<div class="check-group small">
+					<div class="check-box">
+						<input type="checkbox" id="@check2-1" checked />
+						<label for="@check2-1">기본</label>
+					</div>
+					<div class="check-box" style="width: 250px;">
+						<input type="checkbox" id="@check2-2" />
+						<label for="@check2-2">텍스트가 길어서 혹시나 2줄이 될 경우에는 이렇게 보여요.</label>
+					</div>
+				</div>
+				<h3>grey : 폰트 14px, 폰트 컬러 회색</h3>
+				<div class="check-group grey">
+					<div class="check-box">
+						<input type="checkbox" id="@check3-1" checked />
+						<label for="@check3-1">기본</label>
+					</div>
+					<div class="check-box" style="width: 250px;">
+						<input type="checkbox" id="@check3-2" />
+						<label for="@check3-2">텍스트가 길어서 혹시나 2줄이 될 경우에는 이렇게 보여요.</label>
+					</div>
+					<div class="check-box">
+						<input type="checkbox" id="@check3-3" />
+						<label for="@check3-3">체크박스3</label>
+					</div>
+					<div class="check-box">
+						<input type="checkbox" id="@check3-4" />
+						<label for="@check3-4">체크박스4</label>
+					</div>
+				</div>
+				<h3>라디오 박스</h3>
+				<div class="check-group">
+					<div class="check-box">
+						<input type="radio" id="@check4-1" name="@check4" checked />
+						<label for="@check4-1">기본</label>
+					</div>
+					<div class="check-box" style="width: 250px;">
+						<input type="radio" id="@check4-2" name="@check4" />
+						<label for="@check4-2">텍스트가 길어서 혹시나 2줄이 될 경우에는 이렇게 보여요.</label>
+					</div>
+				</div>
+
+
+				<h3>정렬 : cols</h3>
+				<div class="check-group cols">
+					<div class="check-box">
+						<input type="checkbox" id="@check5-1" checked />
+						<label for="@check5-1">기본</label>
+					</div>
+					<div class="check-box" style="width:300px;">
+						<input type="checkbox" id="@check5-2" />
+						<label for="@check5-2">텍스트가 길어서 혹시나 2줄이 될 경우에는 이렇게 보여요.</label>
+					</div>
+					<div class="check-box">
+						<input type="checkbox" id="@check5-3" />
+						<label for="@check5-3">체크박스3</label>
+					</div>
+					<div class="check-box">
+						<input type="checkbox" id="@check5-4" />
+						<label for="@check5-4">체크박스4</label>
+					</div>
+				</div>
+				<section class="exp">
+					<pre>
+						<code class="html">
+기본 체크박스
+input, label 순서 지켜주세요.
+&lt;div class="check-box">
+	&lt;input type="checkbox" id="@아이디명" />
+	&lt;label for="@아이디명">체크박스&lt;/label>
+&lt;/div>
+
+기본 라디오박스 (type 변경)
+&lt;div class="check-box">
+	&lt;input type="radio" id="@아이디명" name="@네임" />
+	&lt;label for="@아이디명">체크박스&lt;/label>
+&lt;/div>
+
+small : 폰트 14px
+&lt;div class="check-box small">
+	&lt;input type="checkbox" id="@아이디명" />
+	&lt;label for="@아이디명">체크박스&lt;/label>
+&lt;/div>
+
+grey : 폰트 14px 컬러 회색
+&lt;div class="check-box grey">
+	&lt;input type="checkbox" id="@아이디명" />
+	&lt;label for="@아이디명">체크박스&lt;/label>
+&lt;/div>
+
+정렬 : 기본
+&lt;div class="check-group">
+  ...
+&lt;/div>
+
+정렬 : rows
+&lt;div class="check-group cols">
+  ...
+&lt;/div>
+
+check-group 내 체크박스 일괄로 small, grey로 변경하고 싶을 경우
+&lt;div class="check-group small">
+  ...
+&lt;/div>
+&lt;div class="check-group grey">
+  ...
+&lt;/div>
+						</code>
+					</pre>
+				</section>
+			</article>
+		</div>
+	</div>
+	<!-- //guide-wrap -->
+
+</div>
+
+<!-- JavaScripts bundle -->
+<script src="../mo/statics/js/jquery-3.4.1.min.js"></script>
+<script src="../mo/statics/js/common.js"></script>
+<script src="highlight.min.js"></script>
+<!-- JavaScripts local -->
+<script>
+$(function(){
+	var $guideList = $('.guide-nav');
+	var $guideContents = $('.guide-contents');
+	var $guideContent = $('.guide-content');
+
+	$guideList.find('h2.blind').after('<ol />');
+	$guideContent.each(function(index){
+		$(this).attr('id', 'guide'+index);
+		var target = $guideContent.eq(index).children('h2');
+		var title = target.text();
+		$guideList.find('ol').append('<li><a href="#guide'+ index +'"><span>'+ title +'</span></a></li>');
+		if ( $(this).hasClass('new') ){
+			$guideList.find('li').eq(index).addClass('new');
+		}
+
+		var name = $guideList.find('li').eq(index).find('a').attr('href');
+		var move = $(name).offset().top - $('.guide-header').height();
+		$guideList.find('li').eq(index).find('a').click(function(e){
+			$(this).parent('li').siblings().find('a').removeClass('on');
+			$(this).addClass('on');
+			$(window).scrollTop(move);
+
+			e.preventDefault();
+		});
+	});
+	$guideList.find('li a').eq(0).addClass('on');
+	$guideContent.eq(0).show();
+
+	navScroll();
+	$(window).on('resize scroll', function(){
+		navScroll();
+	});
+
+	function navScroll(){
+		var winW = $(window).width();
+		var minW = 1024;
+		var scrollLeft = $(window).scrollLeft();
+		if (winW <= minW) {
+			$guideList.css({ 'margin-left' : -scrollLeft });
+		} else {
+			$guideList.css({ 'margin-left' : '0' });
+		}
+	}
+
+	$('.change-list .a-link').click(function(e){
+		var link = $(this).attr('href');
+		$(window).scrollTop($(link).offset().top - 150);
+		e.preventDefault();
+	});
+
+	$('pre code').each(function(i, block) {
+		hljs.configure({tabReplace: '  '});
+		hljs.highlightBlock(block);
+	});
+
+	$('.bt-guide-team').on('click', function(){
+		var _this = $(this);
+		var teamBox = $('.pl-summary .pl-team');
+		var team = teamBox.find('p');
+		var max = team.length;
+		var min = teamBox.find('.hide').length;
+
+		if (_this.hasClass('plus')){
+			if (min) {
+				var index = max - min;
+				team.eq(index).removeClass('hide');
+			}
+		} else {
+			var index = !team.hasClass('hide') ? max : max - min;
+			if (min < max - 1) team.eq(index-1).addClass('hide');
+		}
+	});
+	$('.search-box').each(function(){
+		var box = $(this).find('.input-box');
+		var result = $(this).find('.search-result');
+		box.bind('focus', function(){
+			result.addClass('show');
+		});
+	});
+});
+</script>
+</body>
+</html>

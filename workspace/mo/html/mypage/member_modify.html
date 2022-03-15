@@ -1,0 +1,188 @@
+<include src="../../include/header_title.html" title="회원정보 변경" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <div class="mypage-wrap">
+      <h2 class="mypage-title">마이페이지</h2>
+      <!-- 마이페이지 메뉴
+      <div class="my-menu">
+        <h4 class="menu-title">
+          반가워요,
+          <p class="name"><b>김배민</b>님</p>
+        </h4>
+        <div class="menu-box">
+          <h4>쇼핑 정보</h4>
+          <ul>
+            <li><a href="#none">주문/배송조회</a></li>
+            <li><a href="#none">취소/반품/교환 내역</a></li>
+            <li><a href="#none">나의 상품 후기</a></li>
+            <li><a href="#none">쿠폰함</a></li>
+          </ul>
+        </div>
+        <div class="menu-box">
+          <h4>회원 정보</h4>
+          <ul>
+            <li><a href="#none">회원정보 변경</a></li>
+            <li><a href="#none">배송지 관리</a></li>
+          </ul>
+        </div>
+        <div class="menu-box">
+          <h4>고객 센터</h4>
+          <ul>
+            <li><a href="#none">1:1문의 내역</a></li>
+            <li><a href="#none">이메일문의</a></li>
+          </ul>
+        </div>
+      </div>
+      -->
+      <!-- 마이페이지 컨텐츠 -->
+      <section class="my-container member-modify">
+        <h3 class="my-title">회원정보 변경</h3>
+        <div class="my-info-header">
+          <h4 class="name"><b>김배민님</b>의</h4>
+          <p>회원정보</p>
+          <div class="btn">
+            <a href="#none" class="bt-text arr">비밀번호 변경</a>
+            <a href="#none" class="bt-text arr">회원탈퇴</a>
+          </div>
+        </div>
+        <div class="my-content">
+          <div class="member-info">
+            <div class="member-info-box">
+              <dl>
+                <dt>아이디</dt>
+                <dd>moonlight11</dd>
+              </dl>
+            </div>
+            <div class="member-info-box">
+              <dl>
+                <dt>이름</dt>
+                <dd>김배민</dd>
+              </dl>
+            </div>
+            <div class="member-info-box">
+              <dl>
+                <dt>휴대폰 번호</dt>
+                <dd>010-5236-1456</dd>
+              </dl>
+              <a href="#none" class="bt-xsmall outlined">새로 인증하기</a>
+            </div>
+          </div>
+          <p class="cautions-dotted">
+            이름, 휴대폰번호는 본인인증을 통해 변경 가능합니다.
+          </p>
+          <ul class="form-list large">
+            <li>
+              <div class="input-box must active modify">
+                <span class="inform">이메일 (예: store@baemin.com)</span>
+                <label for="@inputEmail" class="label">이메일</label>
+                <input type="email" id="@inputEmail" value="baemin123@naver.com" />
+              </div>
+              <p class="text-valid">잘못된 이메일 주소 형식입니다. 이메일주소를 정확히 입력해주세요</p>
+              <p class="cautions-dotted">
+                아이디/비밀번호 찾기에 활용되므로 정확하게 입력해주세요.
+              </p>
+            </li>
+            <li>
+              <div class="input-box active">
+                <span class="inform">생년월일 숫자 8자리 (예: 2000-12-31)</span>
+                <label for="@inputEmail" class="label">생일정보</label>
+                <input type="email" id="@inputEmail" value="2001-05-12" />
+              </div>
+              <p class="text-valid">잘못된 생일 형식입니다. 아이디를 정확하게 입력해주세요.</p>
+              <ul class="cautions-dotted">
+                <li>생일을 정확하게 입력해주세요.</li>
+                <li>만 14세 이상만 회원가입이 가능합니다.</li>
+              </ul>
+            </li>
+          </ul>
+          <div class="agree-list">
+            <h4>약관동의</h4>
+            <p class="cautions-dotted">
+              정보수신동의를 하시면, 고객혜택 및 이벤트 등 다양한 정보를 받으실 수 있습니다.
+            </p>
+            <div class="check-box">
+              <input type="checkbox" id="@check03" />
+              <label for="@check03">(선택) 마케팅 정보 수신 동의</label>
+            </div>
+            <div class="check-group grey">
+              <div class="check-box">
+                <input type="checkbox" id="@check03-1" />
+                <label for="@check03-1">SMS</label>
+              </div>
+              <div class="check-box">
+                <input type="checkbox" id="@check03-2" />
+                <label for="@check03-2">이메일</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-group">
+          <a href="#none" class="bt-base disabled">저장하기</a>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- //END :: container -->
+
+  <section class="layer-popup" style="display: none;">
+    <h2 class="popup-title">비밀번호 변경</h2>
+    <div class="popup-content">
+      <ul class="form-list large">
+        <li>
+          <div class="input-box">
+            <label class="label" for="@inputPw1">현재 비밀번호</label>
+            <input type="password" id="@inputPw1" />
+          </div>
+        </li>
+        <li>
+          <div class="input-box focus">
+            <span class="inform">10~16자, 영문대소문자/숫자/특수문자 2종 이상</span>
+            <label class="label" for="@inputPw2">새 비밀번호</label>
+            <input type="password" id="@inputPw2" />
+          </div>
+          <div class="input-box">
+            <label class="label" for="@inputPw3">새 비밀번호 확인</label>
+            <input type="password" id="@inputPw3" />
+          </div>
+        </li>
+      </ul>
+    </div>
+    <footer class="btn-group">
+      <a href="#none" class="bt-base disabled">변경완료</a>
+    </footer>
+    <a href="#none" class="bt-close">닫기</a>
+  </section>
+
+  <section class="layer-popup" style="display: none;">
+    <h2 class="popup-title">회원탈퇴</h2>
+    <div class="popup-content">
+      <div class="system-content secession">
+        <h2 class="system-title">정말... 가시나요?</h2>
+        <div class="system-text">
+          회원 탈퇴 유의사항을 확인해주세요.
+        </div>
+        <ul class="cautions-dotted">
+          <li>회원 탈퇴 시 회원님의 정보는 상품 반품 및 A/S를 위해
+            전자상거래 등에서의 소비자 보호에 관한 법률에 의거한
+            고객정보 보호정책에 따라 관리됩니다.</li>
+          <li>탈퇴 시 회원님께서 보유하셨던 쿠폰은 삭제됩니다.</li>
+          <li>배민문방구는 계속 회원님을 기다리겠습니다. </li>
+        </ul>
+        <div class="input-box">
+          <label class="label" for="@inputPw">비밀번호</label>
+          <input type="password" id="@inputPw" />
+        </div>
+      </div>
+    </div>
+    <footer class="btn-group">
+      <a href="#none" class="bt-base">탈퇴하기</a>
+    </footer>
+    <a href="#none" class="bt-close">닫기</a>
+  </section>
+  <!-- 모바일 footer 삭제됨 -->
+<include src="../../include/footer_none.html" root="../.."></include>

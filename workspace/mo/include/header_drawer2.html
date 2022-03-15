@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+	<title>@@title</title>
+	<link rel="stylesheet" type="text/css" href="@@root/statics/css/layout-mo.css" />
+</head>
+<body class="@@bodyScroll">
+	<!-- Mobile :: 바로 구매하기 영역이 있을 경우 moonbanggu-wrapper에 type-detail 추가 -->
+	<div class="moonbanggu-wrapper@@type">
+	<!-- Mobile :: nav-global 스크롤 관련 클래스
+		fixed 스크롤 시 상단 고정일 경우
+		underline 스크롤 시 언더라인
+		nav-global 내부 컨텐츠 타입은 현재 3가지가 있습니다. 마크업 순서대로 추가 삭제해서 사용하시면 됩니다.
+		1. 로고 + gnb
+		2. 이전 + 타이틀
+		3. 이전 + gnb
+	-->
+	<header class="moonbanggu-header">
+		<div class="nav-global@@underline@@fixed">
+			<h1 class="logo"><a href="#none">배민문방구</a></h1>
+			<!--
+			<a href="#none" class="bt-prev">이전</a>
+			<h2 class="page-title">타이틀</h2>
+			-->
+			<div class="gnb">
+				<h2>공통 메뉴</h2>
+				<ul>
+					<li><a href="#none" class="bt-search">검색</a></li>
+					<li><a href="#none" class="bt-cart">장바구니
+							<!-- 장바구니 수량 추가 시 -->
+							<span class="count-box">2</span>
+						</a>
+					</li>
+					<!-- PC에서 추가되는 메뉴
+					<li><a href="#none" class="bt-mypage">마이페이지</a></li>
+					<li><a href="#none" class="bt-signin">로그인</a></li>
+					<li><a href="#none" class="bt-signin">로그아웃</a></li>
+					-->
+					<li><a href="#none" class="bt-menu">메뉴</a></li>
+				</ul>
+			</div>
+		</div>
+		<nav class="nav-category">
+			<h2>카테고리 메뉴</h2>
+			<ul>
+				<li><a href="#none">전체</a></li>
+				<li><a href="#none">문구</a></li>
+				<li><a href="#none">리빙</a></li>
+				<li class="active"><a href="#none">책/매거진F</a></li> <!-- 활성화 클래스 : active -->
+				<li><a href="#none">배민그린</a></li>
+				<li><a href="#none">배달이친구들</a></li>
+				<li><a href="#none">콜라보레이션</a></li>
+			</ul>
+		</nav>
+	</header>
+	<!-- //END :: header -->
+
+	<!-- START :: Drawer :: 클래스 show -->
+	<div class="nav-drawer@@drawer">
+		<div class="nav-inner">
+			<!-- START :: member-states :: 로그인 전
+			<header class="member-states">
+				<h2>앗!<a href="#none" class="bt-signin txt">로그인이 필요해요</a></h2>
+			</header>
+			-->
+			<!-- member-states :: 로그인 후 -->
+			<header class="member-states">
+				<h2><span class="name">박민재</span>님<p>나이스 투 미츄!</p></h2>
+				<ul class="nav-member">
+					<li><a href="#none" class="bt-mypage">마이페이지</a></li>
+					<li><a href="#none" class="bt-coupon">쿠폰함</a></li>
+					<li><a href="#none" class="bt-order">주문배송</a></li>
+				</ul>
+			</header>
+			<!-- // END :: member-states -->
+			<nav class="nav-menu">
+				<h2>테마</h2>
+				<ul>
+					<li class="all"><a href="#none">전체보기</a></li>
+					<li><a href="#none">손으로 만들어요</a></li>
+					<li><a href="#none">다시 태어난 이야기</a></li>
+				</ul>
+				<h2>카테고리</h2>
+				<ul>
+					<li class="all"><a href="#none">전체보기</a></li>
+					<li><a href="#none">문구</a></li>
+					<li><a href="#none">리빙</a></li>
+					<li class="active"><a href="#none">책/매거진F</a></li> <!-- 활성화 클래스 : active -->
+					<li><a href="#none">배민그린</a></li>
+					<li><a href="#none">배달이친구들</a></li>
+					<li><a href="#none">콜라보레이션</a></li>
+					<li><a href="#none">다 팔렸어요</a></li>
+				</ul>
+			</nav>
+			<footer class="nav-center">
+				<div class="cs-center">
+					<h2>고객센터</h2>
+					<ul>
+						<li><a href="#none">1:1문의</a></li>
+						<li><a href="#none">이메일문의</a></li>
+					</ul>
+				</div>
+				<!--
+				<span class="signin"><a href="#none" class="bt-signin">로그인</a></span>
+				-->
+				<span class="signin"><a href="#none" class="bt-signin">로그아웃</a></span>
+			</footer>
+			<a href="#none" class="bt-close">닫기</a>
+		</div>
+		<div class="nav-dimd"></div>
+	</div>
+	<!-- //END :: Drawer -->

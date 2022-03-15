@@ -1,0 +1,74 @@
+<include src="../../include/header_title.html" title="아이디/비밀번호 찾기" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <div class="account-wrap">
+      <h2 class="account-title">아이디/비밀번호 찾기</h2>
+      <div class="account-content">
+        <div class="tabs">
+          <ul>
+            <li class="active"><a href="#none">아이디 찾기</a></li>
+            <li><a href="#none">비밀번호 찾기</a></li>
+          </ul>
+        </div>
+        <div class="find-content-info">
+          <h3 class="title">아이디를 깜빡하셨나요?</h3>
+          <p class="ment">가입 시 입력하신 정보로 아이디를 찾아보세요.</p>
+          <div class="check-group center small">
+            <div class="check-box">
+              <input type="radio" name="@checkFind" id="@checkFindEmail" checked />
+              <label for="@checkFindEmail">이메일로 찾기</label>
+            </div>
+            <div class="check-box">
+              <input type="radio" name="@checkFind" id="@checkFindPhone" />
+              <label for="@checkFindPhone">휴대폰으로 찾기</label>
+            </div>
+          </div>
+        </div>
+        <div class="find-content">
+          <ul class="form-list">
+            <li>
+              <div class="input-box">
+                <label class="label" for="@inputName">이름</label>
+                <input type="text" id="@inputName" />
+              </div>
+            </li>
+            <li>
+              <div class="input-box focus">
+                <span class="inform">가입 시 등록한 이메일 주소</span>
+                <label class="label" for="@inputEmail">이메일</label>
+                <input type="password" id="@inputEmail" />
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="find-content" style="display:none;">
+          <ul class="form-list">
+            <li>
+              <div class="input-box">
+                <label class="label" for="@inputName">이름</label>
+                <input type="text" id="@inputName" />
+              </div>
+            </li>
+            <li>
+              <div class="input-box">
+                <span class="inform">가입 시 등록한 휴대폰 번호</span>
+                <label class="label" for="@inputPhone">휴대폰</label>
+                <input type="password" id="@inputPhone" />
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <footer class="btn-group">
+        <a href="#none" class="bt-base disabled">아이디 찾기</a>
+      </footer>
+    </div>
+  </div>
+  <!-- //END :: container -->
+  <!-- 모바일 footer 삭제됨 -->
+<include src="../../include/footer_none.html" root="../.."></include>

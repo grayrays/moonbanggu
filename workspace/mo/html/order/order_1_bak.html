@@ -1,0 +1,136 @@
+<include src="../../include/header_title.html" title="주문/결제" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <!-- PC에서 노출
+    <div class="order-step">
+      <ul>
+        <li class="active">장바구니</li>
+        <li>주문/결제</li>
+        <li>결제완료</li>
+      </ul>
+    </div>
+    -->
+    <div class="order-wrapper">
+      <div class="title-order">
+        <h3>배송지</h3>
+        <div class="check-box grey">
+          <input type="checkbox" id="@check1" />
+          <label for="@check1">주문자와 동일</label>
+        </div>
+      </div>
+      <ul class="form-list large">
+        <li>
+          <div class="input-box small">
+            <input type="text" placeholder="받으실 분" />
+          </div>
+          <div class="input-box small">
+            <input type="text" placeholder="휴대폰 번호" />
+          </div>
+        </li>
+        <li>
+          <div class="input-form">
+            <div class="input-box small">
+              <input type="text" placeholder="우편번호" readonly />
+            </div>
+            <a href="#none" class="bt-base outlined">주소찾기</a>
+          </div>
+          <div class="input-box small">
+            <input type="text" placeholder="주소" readonly />
+          </div>
+          <div class="input-box small">
+            <input type="text" placeholder="상세주소(최대 30자 입력 가능)" />
+          </div>
+        </li>
+        <li>
+          <div class="input-box small">
+            <input type="text" placeholder="배송요청사항" />
+          </div>
+        </li>
+      </ul>
+      <div class="check-box grey">
+        <input type="checkbox" id="@check2" />
+        <label for="@check2">기본 배송지로 저장</label>
+      </div>
+
+      <h3 class="title-order">주문 상품 <span class="c-point">2건</span></h3>
+      <ul class="cart-list cols">
+        <li>
+          <div class="list-box">
+            <p class="thumbs">
+              <a href="#none"><img src="../../statics/images/test/cart_img1.jpg" alt="종이로 만든 박스테이프" /></a>
+            </p>
+            <div class="info">
+              <p class="name"><a href="#none">종이로 만든 박스테이프</a></p>
+              <p class="option">옵션 : 스카이블루</p>
+              <p class="amount">수량 : 10개</p>
+              <div class="price">3,500원</div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="list-box">
+            <p class="thumbs">
+              <a href="#none"><img src="../../statics/images/test/cart_img2.jpg" alt="요모포켓X배달이 친구들 독고배달이 포켓" /></a>
+            </p>
+            <div class="info">
+              <p class="name"><a href="#none">피규어. 냥이배달이</a></p>
+              <p class="option">옵션 : 그레이</p>
+              <p class="amount">수량 : 10개</p>
+              <div class="price">2,500원</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="title-order">쿠폰</h3>
+      <dl class="coupon-apply box-grey">
+        <dt>쿠폰</dt>
+        <dd>사용가능 쿠폰 <strong>2개</strong></dd>
+        <dd><a href="#none" class="bt-xsmall outlined">쿠폰 조회 및 적용</a></dd>
+      </dl>
+
+      <h3 class="title-order">결제금액</h3>
+      <div class="payment-result">
+        <dl class="amount box-grey">
+          <dt>총 상품금액</dt>
+          <dd>22,500원</dd>
+          <dt>배송비</dt>
+          <dd>+0원</dd>
+        </dl>
+        <dl  class="total">
+          <dt>결제예상금액</dt>
+          <dd>22,500원</dd>
+        </dl>
+      </div>
+
+      <h3 class="title-order">결제수단</h3>
+      <div class="payment-way">
+        <div class="check-group small cols box-grey">
+          <div class="check-box">
+            <input type="radio" name="@check3" id="@check3-1" />
+            <label for="@check3-1">신용/체크카드</label>
+          </div>
+          <div class="check-box">
+            <input type="radio" name="@check3" id="@check3-2" />
+            <label for="@check3-2">네이버페이</label>
+          </div>
+        </div>
+        <div class="check-box">
+          <input type="checkbox" id="@check4" />
+          <label for="@check4">(필수)구매할 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</label>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <a href="#none" class="bt-base"><strong>22,500원</strong> 주문하기</a>
+      </div>
+    </div>
+  </div>
+  <!-- //END :: container -->
+
+<include src="../../include/footer_none.html" root="../.."></include>

@@ -1,0 +1,62 @@
+<include src="../../include/header.html" title="장바구니" root="../.."></include>
+
+  <!-- 비주얼 이미지나 기타 컨텐츠 영역
+  <div class="visual-area"><img src="../../statics/images/test/theme_visual.png" alt="기획전" /></div>
+  -->
+
+  <!-- START :: container -->
+  <div class="moonbanggu-container">
+    <!-- PC에서 노출 -->
+    <div class="order-step">
+      <ul>
+        <li class="active">장바구니</li>
+        <li>주문/결제</li>
+        <li>결제완료</li>
+      </ul>
+    </div>
+
+    <div class="cart-wrapper">
+      <div class="cart-content">
+        <div class="cart-header">
+          <div class="check-box grey">
+            <input type="checkbox" id="@checkAll" checked />
+            <label for="@checkAll">전체선택(2/3)</label>
+          </div>
+          <a href="#none" class="bt-text">선택삭제</a>
+        </div>
+        <div class="data-none">
+          <h2 class="title">앗!</h2>
+          <div class="text">
+            장바구니가 텅~
+          </div>
+        </div>
+      </div>
+
+      <!-- PC :: 우측에서 fixed, sticky 되어 따라 다님 -->
+      <div class="payment-area">
+        <div class="payment-result">
+          <dl class="amount">
+            <dt>총 상품금액</dt>
+            <dd>0원</dd>
+            <dt>배송비</dt>
+            <dd>0원</dd>
+          </dl>
+          <dl  class="total">
+            <dt>결제예상금액</dt>
+            <dd>0원</dd>
+          </dl>
+          <!--
+          <div class="tooltip">
+            <p class="tip-content"><strong>13,100원</strong> 더 주문 시, <strong>무료배송</strong></p>
+          </div>
+          -->
+        </div>
+        <div class="btn-group">
+          <a href="#none" class="bt-base"><strong>0원</strong> 주문하기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- //END :: container -->
+
+<include src="../../include/footer_script.html" root="../.."></include>

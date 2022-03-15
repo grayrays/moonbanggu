@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, minimum-scale=1, user-scalable=yes,initial-scale=1.0" />
+	<title>@@title</title>
+	<link rel="stylesheet" type="text/css" href="../statics/css/layout-pc.css" />
+  <style>
+    .guide_popup_list ul {display:flex; flex-direction: column;}
+    .guide_popup_list ul li {border-top:1px solid #ddd;}
+    .guide_popup_list ul li:first {border-top:0;}
+    .guide_popup_list ul li a {padding:10px 20px; transition:.3s ease all; display:flex;}
+    .guide_popup_list ul li a:hover {color:#fff; background-color:#2AC1BC;}
+  </style>
+</head>
+<body>
+<div class="guide_popup_list"></div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h2 class="title-hanna">앗!</h2>
+    <h3 class="title">모든 케이스 참고용</h3>
+    <div class="ment">
+      인증이 완료되었습니다.<br />
+      회원정보를 입력하고 가입을 완료해주세요.
+    </div>
+    <a href="#none" class="bt-text arr">‘사이트 이전 안내’ 자세히 보기</a>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+<!--
+<div class="layer-dimd"></div>
+-->
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      인증이 완료되었습니다.<br />
+      회원정보를 입력하고 가입을 완료해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h2 class="title-hanna">앗!</h2>
+    <h3 class="title">2021-02-09 이전 가입회원이신가요?</h3>
+    <div class="ment">
+      본인인증 후 비밀번호를 재설정해주세요.
+    </div>
+    <a href="#none" class="bt-text arr">‘사이트 이전 안내’ 자세히 보기</a>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">다시 로그인하기</a>
+    <a href="#none" class="bt-base">본인인증</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      인증이 완료되었습니다.<br />비밀번호를 등록해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      인증이 완료되었습니다.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      인증이 완료되었습니다.<br />
+      회원정보를 입력하고 가입을 완료해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+  <a href="#none" class="bt-close">닫기</a>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      인증이 실패했습니다.<br />다시 시도해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      만 14세 미만은<br />가입할 수 없습니다.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      이미 가입한 회원입니다
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">아이디/비밀번호찾기</a>
+    <a href="#none" class="bt-base">로그인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h2 class="title-hanna">앗!</h2>
+    <div class="ment">
+      회원정보를 찾을 수 없습니다.<br />아이디/비밀번호를 다시 확인해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h2 class="title-hanna">앗!</h2>
+    <div class="ment">
+      회원정보를 찾을 수 없습니다.<br />이름/이메일을 다시 확인해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h2 class="title-hanna">앗!</h2>
+    <div class="ment">
+      회원정보를 찾을 수 없습니다.<br />
+      이름/휴대폰 번호를 다시 확인해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      인증이 완료되었습니다.<br />새로운 비밀번호를 등록해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      비밀번호 재설정이 완료되었습니다
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      비밀번호 변경이 완료되었습니다
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h3 class="title">휴면 해제 완료</h3>
+    <div class="ment">
+      회원님 계정의 휴면 상태가 해제되었습니다.<br />
+      배민문방구의 모든 서비스를<br />정상 이용 가능합니다.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      작성한 후기를 삭제하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">삭제하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      선택된 상품을 삭제하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">삭제하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      상품을 삭제하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">삭제하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h3 class="title">결제를 취소하셨습니다.</h3>
+    <div class="ment">
+      주문 내용 확인 후 다시 결제해주세요.
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base">확인</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <h3 class="title">현재 보유중인 회원혜택</h3>
+    <p class="text c-point">쿠폰 10장</p>
+    <div class="ment">
+      탈퇴 시 보유중인 혜택이 모두 삭제됩니다.<br />
+      정말로 탈퇴하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">탈퇴하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      정말로 탈퇴하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">탈퇴하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      반품신청/교환신청을<br />취소하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">탈퇴하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      주문을 취소하시겠습니까?
+    </div>
+    <div class="check-box grey">
+      <input type="checkbox" id="@check" />
+      <label for="@check">취소 상품 다시 장바구니담기</label>
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">주문취소하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      작성한 정보로 반품을 신청하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">신청하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      작성한 정보로 교환을 신청하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">신청하기</a>
+  </div>
+</div>
+
+<div class="popup-alert">
+  <div class="alert-content">
+    <div class="ment">
+      1:1문의를 등록하시겠습니까?
+    </div>
+  </div>
+  <div class="alert-button">
+    <a href="#none" class="bt-base grey">취소</a>
+    <a href="#none" class="bt-base">등록하기</a>
+  </div>
+</div>
+
+
+
+<script src="../statics/js/jquery-3.4.1.min.js"></script>
+<script src="../statics/js/common.js"></script>
+<script>
+$(function(){
+  var $popupArea = $('.popup-wrap');
+  var $popup = $('.popup-alert');
+  var popupNavi = $('.guide_popup_list');
+  popupNavi.html(`<ul></ul>`);
+  var popupNav = popupNavi.find('ul');
+  $popup.each(function() {
+    var _this = $(this);
+    var title = _this.find('.title').length ? _this.find('.title') : _this.find('.ment');
+    var navText = title.text();
+    var popupList = `<li><a href="#none">${navText}</a></li>`;
+    popupNav.append(popupList);
+    $popup.css({ 'display' : 'none'});
+  });
+  var popupLink = popupNav.find('li a');
+  popupLink.click(function(e){
+    var index = $(this).parent('li').index();
+    if (!$('.layer-dimd').length) $popup.eq(index).after('<div class="layer-dimd"></div>');
+    var $dimd = $('.layer-dimd');
+    $dimd.css({ 'opacity' : '.6'});
+    $popup.eq(index).show();
+    e.preventDefault();
+  });
+  $popup.find('.bt-base, .bt-close').click(function(e){
+    var $dimd = $('.layer-dimd');
+    $(this).parents('.popup-alert').hide();
+    $dimd.remove();
+    e.preventDefault();
+  })
+});
+</script>
+</body>
+</html>
