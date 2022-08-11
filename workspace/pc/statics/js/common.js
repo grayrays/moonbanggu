@@ -5,8 +5,8 @@ $(function(){
   $('a').each(function(){
     $(this).click(function(e){
       if ($(this).attr('href') === '#none' ) e.preventDefault();
-    })
-  });
+    }) 
+  }); 
 
   var $navDrawer = $('.nav-drawer');
   var navgation = $navDrawer.find('.nav-inner');

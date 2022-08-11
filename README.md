@@ -1,11 +1,16 @@
 # moonbanggu
 배민문방구
 
+버전 확인
+
+node v14.7.0
+npm v6.14.7
+
 npm install
 
-gulp start
+npm start
 
-http://localhost:9000/
+http://localhost:3000/
 
 .
 .
