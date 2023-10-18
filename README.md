@@ -19,7 +19,7 @@ http://localhost:3000/
 
 배민다움(반응형) 퍼블리싱 현황판
 
-http://grayray.dothome.co.kr/bm_belike/
+http://grayray.dothome.co.kr/bm_like/
 
 
 자리배치도 퍼블리싱 현황판
